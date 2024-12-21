@@ -1,5 +1,36 @@
-/ToolChain.cmake
-/bin
-/build
-/libcarla-install
-_*
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/ToolChain.cmake")
+    include("${CMAKE_CURRENT_SOURCE_DIR}/ToolChain.cmake")
+endif()
+# 设置环境变量指向 bin 目录（这里假设是在 Linux 或类 Linux 环境下，Windows 下设置环境变量的方式略有不同）
+set(ENV{PATH} "$ENV{PATH}:${CMAKE_CURRENT_SOURCE_DIR}/bin")
+add_executable(my_target main.cpp)
+target_link_libraries(my_target PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/bin/libsomelib.so")
+add_custom_command(TARGET my_target POST_BUILD
+                    COMMAND "${CMAKE_CURRENT_SOURCE_DIR}/build/build_script.sh"
+                    WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/build"
+                    COMMENT "Running custom build script"
+)
+add_library(my_library STATIC source1.cpp source2.cpp)
+target_link_libraries(my_library PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/libcarla-install/libmylib.a")
+file(GLOB MY_SOURCES "path/to/files/_*.cpp")
+add_executable(my_executable ${MY_SOURCES})
+CC := /path/to/your/c/compiler
+CXX := /path/to/your/c++/compiler
+my_target: main.o other.o
+    $(CXX) -o my_target main.o other.o $(LDFLAGS)
+main.o: main.cpp
+    $(CXX) -c main.cpp $(CFLAGS)
+other.o: other.cpp
+    $(CXX) -c other.cpp $(CFLAGS)
+my_rule:
+    ${CMAKE_CURRENT_SOURCE_DIR}/bin/mytool arg1 arg2
+LDFLAGS += -L${CMAKE_CURRENT_SOURCE_DIR}/bin -lsomelib
+build_target:
+    cd ${CMAKE_CURRENT_SOURCE_DIR}/build &&./build_script.sh
+LDFLAGS += -L${CMAKE_CURRENT_SOURCE_DIR}/libcarla-install -lmylib
+CFLAGS += -I${CMAKE_CURRENT_SOURCE_DIR}/libcarla-install/include
+MY_SOURCES := path/to/files/_*.cpp
+my_executable: $(MY_SOURCES:.cpp=.o)
+    $(CXX) -o my_executable $(MY_SOURCES:.cpp=.o) $(LDFLAGS)
+%.o: %.cpp
+    $(CXX) -c $< $(CFLAGS)
