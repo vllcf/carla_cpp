@@ -11,7 +11,7 @@ namespace carla {
 namespace geom {
 
   // Math 类的成员函数 GetVectorAngle，用于计算两个三维向量 a 和 b 之间的夹角（以弧度为单位）。
-  // 它通过向量点积公式计算夹角的余弦值（Dot(a, b) / (a.Length() * b.Length())），
+  // 它通过向量点积公式计算夹角的余弦值（Dot(a, b) / (a.Length() * b.Length())）
   // 然后使用 std::acos 函数（反余弦函数）将余弦值转换为对应的夹角弧度值并返回。
   double Math::GetVectorAngle(const Vector3D &a, const Vector3D &b) {
     return std::acos(Dot(a, b) / (a.Length() * b.Length()));
