@@ -1,169 +1,101 @@
 {
-	// 文件版本
-	"FileVersion": 3,
+    // 文件版本号，用于标识该配置文件的版本，方便在不同版本间进行兼容和升级处理
+    "FileVersion": 3,
 
-	//关联的Unreal Engine版本
-	"EngineAssociation": "4.26",
+    // 关联的Unreal Engine版本，表明此项目或配置与特定版本的Unreal Engine相关联，这里关联的是4.26版本
+    "EngineAssociation": "4.26",
 
-	//类别（此处为空）
-	"Category": "",
+    // 类别，此处为空字符串，可能用于对该配置进行分类，在当前配置中未使用该属性进行分类
+    "Category": "",
 
-	//描述（此处为空）
-	"Description": "",
+    // 描述，同样为空字符串，可用于提供关于此配置的详细描述信息，这里未填写任何描述
+    "Description": "",
 
-	//模块列表
-	"Modules": [
-		{
-			//模块名称
-			"Name": "CarlaUE4",
-			//模块类型
-			"Type": "Runtime",
-			//加载阶段，Default为默认
-			"LoadingPhase": "Default",
-			//增加的需求项
-			"AdditionalDependencies": [
-				"Engine",
-				"PhysXVehicles",
-				"Carla",
-				"CoreUObject"
-			]
-		}
-	],
+    // 模块列表，包含了项目所依赖的各个模块信息
+    "Modules": [
+        {
+            // 模块名称，这里是CarlaUE4，通常表示一个特定功能模块的名称
+            "Name": "CarlaUE4",
+            // 模块类型，"Runtime"表示这是一个运行时模块，即在游戏运行时会被加载和使用
+            "Type": "Runtime",
+            // 加载阶段，"Default"表示按照默认的加载顺序进行加载，具体的加载顺序和时机可能由引擎定义
+            "LoadingPhase": "Default",
+            // 增加的需求项，列出了该模块依赖的其他模块或库，这里依赖了"Engine"（引擎核心模块）、"PhysXVehicles"（物理车辆相关模块）、"Carla"（可能是项目自定义的Carla相关模块）和"CoreUObject"（核心对象模块）
+            "AdditionalDependencies": [
+                "Engine",
+                "PhysXVehicles",
+                "Carla",
+                "CoreUObject"
+            ]
+        }
+    ],
 
-	//插件列表
-	"Plugins": [
-		//插件Carla，已经启用
-		{
-			"Name": "Carla",
-			"Enabled": true
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "OnlineSubsystemGooglePlay",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Android"
-			] //该插件仅支持Android
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "AndroidPermission",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "AppleARKit",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "LocationServicesBPLibrary",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "AndroidDeviceProfileSelector",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "ExampleDeviceProfileSelector",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "IOSDeviceProfileSelector",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "UObjectPlugin",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "AndroidMedia",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "HTML5Networking",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "MobileLauncherProfileWizard",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "MobilePatchingUtils",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "AndroidMoviePlayer",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "AppleMoviePlayer",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "GoogleCloudMessaging",
-			"Enabled": false
-		},
-		//性能监视器已经启用
-		{
-			"Name": "PerformanceMonitor",
-			"Enabled": true
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "OculusVR",
-			"Enabled": false
-		},
-		//下面的插件不能被启用
-		{
-			"Name": "SteamVR",
-			"Enabled": false
-		},
-		//RenderDocPlugin已经启用，可用于图形调试
-		{
-			"Name": "RenderDocPlugin",
-			"Enabled": true
-		},
-		//下面的插件不能被启用，但是提供了市场链接
-		{
-			"Name": "CarSim",
-			"Enabled": false,
-			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/2d712649ca864c80812da7b5252f5608"
-		},
-		//编辑器脚本工具已经启用
-		{
-			"Name": "EditorScriptingUtilities",
-			"Enabled": true
-		},
-		//CarlaTools插件已经启用
-		{
-			"Name": "CarlaTools",
-			"Enabled": true
-		},
-		//Python的脚本插件已经启用
-		{
-			"Name": "PythonScriptPlugin",
-			"Enabled": true
-		},
-		//毛发导入与渲染相关的插件已经启用
-		{
-			"Name": "AlembicHairImporter",
-			"Enabled": true
-		},
-		{
-			"Name": "HairStrands",
-			"Enabled": true
-		}
-	]
-}
+    // 插件列表，包含了项目中可用的各种插件及其状态信息
+    "Plugins": [
+        // 插件Carla，已经启用，可能用于提供Carla相关的特定功能
+        {
+            "Name": "Carla",
+            "Enabled": true
+        },
+        // 下面的插件不能被启用，此插件是OnlineSubsystemGooglePlay，仅支持Android平台，用于与Google Play在线服务集成，但当前未启用
+        {
+            "Name": "OnlineSubsystemGooglePlay",
+            "Enabled": false,
+            "SupportedTargetPlatforms": [
+                "Android"
+            ]
+        },
+        // 插件AndroidPermission未启用，可能用于处理Android设备权限相关功能
+        {
+            "Name": "AndroidPermission",
+            "Enabled": false
+        },
+        // 插件AppleARKit未启用，用于与苹果ARKit增强现实框架集成
+        {
+            "Name": "AppleARKit",
+            "Enabled": false
+        },
+        // 插件LocationServicesBPLibrary未启用，可能用于处理位置服务相关的蓝图功能
+        {
+            "Name": "LocationServicesBPLibrary",
+            "Enabled": false
+        },
+        // 插件AndroidDeviceProfileSelector未启用，用于选择Android设备配置文件
+        {
+            "Name": "AndroidDeviceProfileSelector",
+            "Enabled": false
+        },
+        // 插件ExampleDeviceProfileSelector未启用，可能是用于示例设备配置文件选择的插件
+        {
+            "Name": "ExampleDeviceProfileSelector",
+            "Enabled": false
+        },
+        // 插件IOSDeviceProfileSelector未启用，用于选择iOS设备配置文件
+        {
+            "Name": "IOSDeviceProfileSelector",
+            "Enabled": false
+        },
+        // 插件UObjectPlugin未启用，可能与Unreal Engine的UObject系统相关的插件
+        {
+            "Name": "UObjectPlugin",
+            "Enabled": false
+        },
+        // 插件AndroidMedia未启用，用于处理Android设备上的媒体相关功能
+        {
+            "Name": "AndroidMedia",
+            "Enabled": false
+        },
+        // 插件HTML5Networking未启用，可能用于HTML5网络相关功能（如果项目涉及到Web相关内容）
+        {
+            "Name": "HTML5Networking",
+            "Enabled": false
+        },
+        // 插件MobileLauncherProfileWizard未启用，可能用于移动设备启动器配置文件向导功能
+        {
+            "Name": "MobileLauncherProfileWizard",
+            "Enabled": false
+        },
+        // 插件MobilePatchingUtils未启用，用于移动设备补丁相关的实用功能
+        {
+            "Name": "MobilePatchingUtils",
+            "
