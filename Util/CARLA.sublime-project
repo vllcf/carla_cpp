@@ -2,78 +2,78 @@
     // 定义项目的文件夹相关信息
     "folders":[
         {
-            // 文件夹的路径
+            // 文件夹的路径，这里使用相对路径".."表示上级目录
             "path":"..",
-            // 要排除的文件模式列表
+            // 要排除的文件模式列表，这些文件将不会被纳入项目管理范围
             "file_exclude_patterns":[
-                "*.VC.db",
-                "*.VC.opendb",
-                "*.gdb_history",
-                "*.kdev4",
-                "*.pri",
-                "*.pro",
-                "*.py[cod]",
-                "*.sln",
-                "*.stackdump",
-                "*.sublime-workspace",
-                "*.uasset",
-                "*.umap",
-                "*.workspace",
-                "*CodeCompletionFolders.txt",
-                "*CodeLitePreProcessor.txt",
-                ".tags*",
-                "core"
+                "*.VC.db", // Visual Studio相关的数据库文件
+                "*.VC.opendb", // Visual Studio相关的开放数据库文件
+                "*.gdb_history", // gdb调试器的历史记录文件
+                "*.kdev4", // 可能与KDevelop 4相关的文件
+                "*.pri", // 可能是某种项目文件（具体取决于项目类型）
+                "*.pro", // 可能是Qt项目文件或其他类似项目文件
+                "*.py[cod]", // Python编译后的字节码文件（.pyc、.pyo、.pyd等）
+                "*.sln", // Visual Studio解决方案文件
+                "*.stackdump", // 可能是程序崩溃时生成的堆栈转储文件
+                "*.sublime-workspace", // Sublime Text工作区文件
+                "*.uasset", // Unreal Engine的资源文件
+                "*.umap", // Unreal Engine的地图文件
+                "*.workspace", // 可能是其他工作区文件格式
+                "*CodeCompletionFolders.txt", // 可能与代码自动完成相关的文件夹记录文件
+                "*CodeLitePreProcessor.txt", // 可能与CodeLite预处理器相关的文件
+                ".tags*", // 可能是标签文件（用于代码索引等）
+                "core" // 名为core的文件或文件夹（具体取决于上下文）
             ],
-            // 要排除的文件夹模式列表
+            // 要排除的文件夹模式列表，这些文件夹将不会被纳入项目管理范围
             "folder_exclude_patterns":[
-                "*.egg-info",
-                ".clang",
-                ".codelite",
-                ".kdev4",
-                ".vs",
-                ".vscode",
-                "Binaries",
-                "Build",
-                "DerivedDataCache",
-                "Dist",
-                "Doxygen",
-                "Examples/CppClient/*",
-                "Intermediate",
-                "PythonAPI/carla/build",
-                "PythonAPI/carla/dependencies",
-                "PythonAPI/carla/dist",
-                "Saved",
-                "Unreal/CarlaUE4/Content/Carla/*",
-                "Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies",
-                "__pycache__",
-                "_site"
+                "*.egg-info", // Python egg包的信息文件夹
+                ".clang", // 可能与Clang编译器相关的文件夹
+                ".codelite", // 可能与CodeLite IDE相关的文件夹
+                ".kdev4", // KDevelop 4相关的文件夹
+                ".vs", // Visual Studio相关的文件夹
+                ".vscode", // Visual Studio Code相关的文件夹
+                "Binaries", // 存放二进制文件的文件夹
+                "Build", // 构建过程中生成的文件和文件夹
+                "DerivedDataCache", // 可能是派生数据缓存文件夹（用于存储编译或运行时生成的中间数据）
+                "Dist", // 用于存放分发文件的文件夹
+                "Doxygen", // 可能与Doxygen文档生成工具相关的文件夹
+                "Examples/CppClient/*", // Examples目录下的CppClient文件夹及其所有内容
+                "Intermediate", // 存放中间文件的文件夹
+                "PythonAPI/carla/build", // PythonAPI中carla模块的构建文件夹
+                "PythonAPI/carla/dependencies", // PythonAPI中carla模块的依赖文件夹
+                "PythonAPI/carla/dist", // PythonAPI中carla模块的分发文件夹
+                "Saved", // 可能是保存的配置或状态文件的文件夹
+                "Unreal/CarlaUE4/Content/Carla/*", // Unreal项目中CarlaUE4的特定内容文件夹及其所有内容
+                "Unreal/CarlaUE4/Plugins/Carla/CarlaDependencies", // Unreal项目中Carla插件的依赖文件夹
+                "__pycache__", // Python字节码缓存文件夹
+                "_site" // 可能是与网站相关的文件夹（如果项目涉及到Web相关内容）
             ]
         }
     ],
-    // 项目的设置信息
+    // 项目的设置信息，用于配置编辑器或构建工具在处理项目时的一些行为
     "settings":{
         // 保存时确保文件末尾有新行
         "ensure_newline_at_eof_on_save":true,
-        // 制表符大小
+        // 制表符大小为2个空格宽度
         "tab_size":2,
-        // 将制表符转换为空格
+        // 将制表符转换为空格，便于代码格式统一
         "translate_tabs_to_spaces":true,
-        // 保存时裁剪尾随的空格
+        // 保存时裁剪尾随的空格，去除文件末尾多余的空格字符
         "trim_trailing_white_space_on_save":true
     },
-    // 构建系统信息
+    // 构建系统信息，定义了项目的各种构建配置和命令
     "build_systems":[
         {
-            // 构建系统的名称
+            // 构建系统的名称，用于标识不同的构建任务
             "name":"CARLA - make CarlaUE4Editor",
-            // 工作目录，使用变量表示项目路径的上级目录
+            // 工作目录，使用变量${project_path}表示项目路径的上级目录
             "working_dir":"${project_path}/..",
-            // 文件正则表达式，用于匹配错误信息
+            // 文件正则表达式，用于匹配构建过程中输出的错误信息，以便在编辑器中正确显示错误位置
             "file_regex":"(Unreal\\/CarlaUE4\\/[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
-            // 语法
+            // 语法，指定用于解析构建输出的语法文件
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 CarlaUE4Editor
+                // Linux下的shell命令，用于构建CarlaUE4Editor
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make CarlaUE4Editor"
             }
         },
@@ -83,7 +83,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 LibCarla
+                // Linux下的shell命令，用于构建LibCarla的所有版本（可能包括不同配置或目标）
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla"
             }
         },
@@ -93,7 +93,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 LibCarla 的服务器端
+                // Linux下的shell命令，用于构建LibCarla的服务器端的所有版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.server"
             }
         },
@@ -103,7 +103,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 LibCarla 的服务器端的调试版本
+                // Linux下的shell命令，用于构建LibCarla的服务器端的调试版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.server.debug"
             }
         },
@@ -113,7 +113,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 LibCarla 的服务器端的发布版本
+                // Linux下的shell命令，用于构建LibCarla的服务器端的发布版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.server.release"
             }
         },
@@ -123,7 +123,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 LibCarla 的客户端
+                // Linux下的shell命令，用于构建LibCarla的客户端的所有版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.client"
             }
         },
@@ -133,7 +133,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 LibCarla 的客户端的调试版本
+                // Linux下的shell命令，用于构建LibCarla的客户端的调试版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.client.debug"
             }
         },
@@ -143,7 +143,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 LibCarla 的客户端的发布版本
+                // Linux下的shell命令，用于构建LibCarla的客户端的发布版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make LibCarla.client.release"
             }
         },
@@ -153,7 +153,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 PythonAPI
+                // Linux下的shell命令，用于构建PythonAPI的所有版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make PythonAPI"
             }
         },
@@ -163,7 +163,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 PythonAPI 的 Python 2 版本
+                // Linux下的shell命令，用于构建PythonAPI的Python 2版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make PythonAPI.2"
             }
         },
@@ -173,7 +173,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，构建 PythonAPI 的 Python 3 版本
+                // Linux下的shell命令，用于构建PythonAPI的Python 3版本
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make PythonAPI.3"
             }
         },
@@ -183,7 +183,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，进行全面检查
+                // Linux下的shell命令，用于进行全面检查（可能包括代码规范、依赖关系等方面的检查）
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check"
             }
         },
@@ -193,7 +193,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，对 LibCarla 进行全面检查
+                // Linux下的shell命令，用于对LibCarla进行全面检查
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.LibCarla"
             }
         },
@@ -203,7 +203,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，对 LibCarla 的调试版本进行检查
+                // Linux下的shell命令，用于对LibCarla的调试版本进行检查
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.LibCarla.debug"
             }
         },
@@ -213,7 +213,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，对 LibCarla 的发布版本进行检查
+                // Linux下的shell命令，用于对LibCarla的发布版本进行检查
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.LibCarla.release"
             }
         },
@@ -223,7 +223,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，使用 GDB 对 LibCarla 的调试版本进行检查
+                // Linux下的shell命令，使用GDB对LibCarla的调试版本进行检查，通过gnome-terminal启动一个新终端执行命令
                 "shell_cmd":"gnome-terminal --maximize -e 'make check.LibCarla.debug ARGS=\"--gdb\"'"
             }
         },
@@ -233,7 +233,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，对 PythonAPI 进行全面检查
+                // Linux下的shell命令，用于对PythonAPI进行全面检查
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.PythonAPI"
             }
         },
@@ -243,7 +243,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，对 PythonAPI 的 Python 2 版本进行检查
+                // Linux下的shell命令，用于对PythonAPI的Python 2版本进行检查
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.PythonAPI.2"
             }
         },
@@ -253,7 +253,7 @@
             "file_regex":"^../../([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，对 PythonAPI 的 Python 3 版本进行检查
+                // Linux下的shell命令，用于对PythonAPI的Python 3版本进行检查
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make check.PythonAPI.3"
             }
         },
@@ -262,7 +262,7 @@
             "working_dir":"${project_path}/..",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，执行清理操作
+                // Linux下的shell命令，用于执行清理操作（可能删除构建过程中生成的临时文件等）
                 "shell_cmd":"CARLA_BUILD_NO_COLOR=true make clean"
             }
         },
@@ -272,7 +272,7 @@
             "file_regex":"^([^\n:]*):(-?[0-9]+):?(-?[0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，使用 Pylint 对 PythonAPI 下的所有 Python 文件进行检查
+                // Linux下的shell命令，使用Pylint对PythonAPI下的所有Python文件进行检查，设置了一些检查选项和消息模板
                 "shell_cmd":"shopt -s globstar; pylint -rn --msg-template='{path}:{line}:{column}: {msg_id}: {msg}' --disable=R,C --rcfile=PythonAPI/.pylintrc PythonAPI/**/*.py"
             }
         },
@@ -283,19 +283,8 @@
             "file_regex":"^([^\n:]*):([0-9]+):?([0-9]+)?:? (.*)$",
             "syntax":"Packages/Makefile/Make Output.sublime-syntax",
             "linux":{
-                // Linux 下的 shell 命令，使用 Pylint 对当前文件进行检查
+                // Linux下的shell命令，使用Pylint对当前文件（通过${file}变量指定）进行检查，设置了检查选项和消息模板
                 "shell_cmd":"pylint -rn --msg-template='{path}:{line}:{column}: {msg_id}: {msg}' --disable=R,C --rcfile=PythonAPI/.pylintrc ${file}"
             }
         },
         {
-            "name":"CARLA - Prettify this file",
-            "working_dir":"${project_path}/..",
-            "file_regex":"^([^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
-            "syntax":"Packages/Makefile/Make Output.sublime-syntax",
-            "linux":{
-                // Linux 下的 shell 命令，美化当前文件
-                "shell_cmd":"CARLA_BUILD_NO_COLOR=true make pretty ARGS=-f${file}"
-            }
-        }
-    ]
-}
