@@ -7,7 +7,7 @@ rem Run it through a cmd with the x64 Visual C++ Toolset enabled.
 set LOCAL_PATH=%~dp0
 set FILE_N=-[%~n0]:
 
-rem Print batch params (debug purpose)
+rem Print batch params (debug purpose)，用于在运行时打印传入的批处理参数，方便调试查看传入的具体参数情况
 echo %FILE_N% [Batch params]: %*
 
 rem ============================================================================
@@ -69,7 +69,8 @@ rem -- Local Variables ---------------------------------------------------------
 rem ============================================================================
 
 rem Set the visual studio solution directory
-rem
+rem 以下是设置与项目相关的各种路径变量，包括 Visual Studio 项目路径、源码路径、安装路径等，
+rem 并且将路径中的斜杠统一替换为反斜杠，以适配 Windows 下的路径格式要求
 set OSM2ODR_VSPROJECT_PATH=%INSTALLATION_DIR:/=\%osm2odr-visualstudio\
 set OSM2ODR_SOURCE_PATH=%INSTALLATION_DIR:/=\%osm2odr-source\
 set OSM2ODR_INSTALL_PATH=%ROOT_PATH:/=\%PythonAPI\carla\dependencies\
@@ -78,8 +79,34 @@ set CARLA_DEPENDENCIES_FOLDER=%ROOT_PATH:/=\%Unreal\CarlaUE4\Plugins\Carla\Carla
 
 if %GENERATOR% == "" set GENERATOR="Visual Studio 16 2019"
 
+rem 以下是添加编译依赖文件相关的部分，用于处理可能需要的一些前置依赖，比如确保相关依赖库的目录存在等
+
+rem 检查并创建 proj 依赖相关的目录（如果不存在的话），proj 可能是项目中涉及坐标转换等功能的依赖库
+if not exist "%INSTALLATION_DIR%\proj-install" (
+    mkdir "%INSTALLATION_DIR%\proj-install"
+)
+
+rem 检查并创建 xerces-c 依赖相关的目录（如果不存在的话），xerces-c 可能用于处理 XML 相关操作，比如解析配置文件等
+if not exist "%INSTALLATION_DIR%\xerces-c-3.2.3-install" (
+    mkdir "%INSTALLATION_DIR%\xerces-c-3.2.3-install"
+)
+
+rem 以下代码块用于下载 proj 依赖库（这里只是示例伪代码，实际需要根据具体的 proj 下载源和方式来替换，比如可能是从官网下载安装包然后解压等操作）
+rem 假设 proj 有对应的下载链接，这里使用 curl 模拟下载，实际可能需要替换为真实有效的下载方式
+rem curl --retry 5 --retry-max-time 120 -L -o proj.zip https://example.com/proj.zip
+rem tar -xf proj.zip
+rem del proj.zip
+rem ren proj proj-install
+
+rem 以下代码块用于下载 xerces-c 依赖库（同样是示例伪代码，需按实际情况调整）
+rem 假设 xerces-c 有对应的下载链接，此处模拟下载解压过程
+rem curl --retry 5 --retry-max-time 120 -L -o xerces-c.zip https://example.com/xerces-c.zip
+rem tar -xf xerces-c.zip
+rem del xerces-c.zip
+rem ren xerces-c xerces-c-3.2.3-install
+
 if %REMOVE_INTERMEDIATE% == true (
-    rem Remove directories
+    rem Remove directories，用于删除指定的中间文件目录，如果 REMOVE_INTERMEDIATE 变量为 true 的话，会遍历下面的目录并删除
     for %%G in (
         "%OSM2ODR_INSTALL_PATH%",
     ) do (
@@ -90,7 +117,7 @@ if %REMOVE_INTERMEDIATE% == true (
     )
 )
 
-rem Build OSM2ODR
+rem Build OSM2ODR，根据 BUILD_OSM2ODR 变量的值来决定是否执行构建 OSM2ODR 的操作，构建过程涉及从源码获取、配置生成、编译安装等步骤
 if %BUILD_OSM2ODR% == true (
     cd "%INSTALLATION_DIR%"
     if not exist "%OSM2ODR_SOURCE_PATH%" (
@@ -100,7 +127,7 @@ if %BUILD_OSM2ODR% == true (
         ren sumo-%CURRENT_OSM2ODR_COMMIT% osm2odr-source
     )
     
-    cd ..
+    cd..
     if not exist "%OSM2ODR_VSPROJECT_PATH%" mkdir "%OSM2ODR_VSPROJECT_PATH%"
     cd "%OSM2ODR_VSPROJECT_PATH%"
 
@@ -114,7 +141,7 @@ if %BUILD_OSM2ODR% == true (
         "%OSM2ODR_SOURCE_PATH%"
     if %errorlevel% neq 0 goto error_cmake
 
-    cmake --build . --config Release --target install | findstr /V "Up-to-date:"
+    cmake --build. --config Release --target install | findstr /V "Up-to-date:"
     if %errorlevel% neq 0 goto error_install
     copy %OSM2ODR_INSTALL_PATH%\lib\osm2odr.lib %CARLA_DEPENDENCIES_FOLDER%\lib
     copy %OSM2ODR_INSTALL_PATH%\include\OSM2ODR.h %CARLA_DEPENDENCIES_FOLDER%\include
